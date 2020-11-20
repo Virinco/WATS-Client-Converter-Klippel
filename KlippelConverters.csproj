@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F5B55826-4AA8-424A-AA43-D13E2C2200D3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KlippelConverters</RootNamespace>
+    <AssemblyName>KlippelConverters</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Virinco.WATS.Converters.Standard, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WATS.Client.5.1.159\lib\net35\Virinco.WATS.Converters.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="Virinco.WATS.Interface.MES, Version=5.1.0.159, Culture=neutral, PublicKeyToken=25abfe255fd31fdf, processorArchitecture=MSIL">
+      <HintPath>packages\WATS.Client.5.1.159\lib\net35\Virinco.WATS.Interface.MES.dll</HintPath>
+    </Reference>
+    <Reference Include="Virinco.WATS.Interface.TDM, Version=5.1.0.159, Culture=neutral, PublicKeyToken=25abfe255fd31fdf, processorArchitecture=MSIL">
+      <HintPath>packages\WATS.Client.5.1.159\lib\net35\Virinco.WATS.Interface.TDM.dll</HintPath>
+    </Reference>
+    <Reference Include="Virinco.WATS.Service.MES.Contract, Version=5.1.0.159, Culture=neutral, PublicKeyToken=3e36107bb2aa2c24, processorArchitecture=MSIL">
+      <HintPath>packages\WATS.Client.5.1.159\lib\net35\Virinco.WATS.Service.MES.Contract.dll</HintPath>
+    </Reference>
+    <Reference Include="Virinco.WATS.WATS-Core, Version=5.1.0.159, Culture=neutral, PublicKeyToken=40e2cae0ae7be54b, processorArchitecture=MSIL">
+      <HintPath>packages\WATS.Client.5.1.159\lib\net35\Virinco.WATS.WATS-Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConverterTests.cs" />
+    <Compile Include="KlippelLogConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Impedance-imp.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Impedance-values.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-rbz.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-resp.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-thd.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-values.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Impedance-imp.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Impedance-values.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-rbz.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-resp.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-thd.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-values.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
