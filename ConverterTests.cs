@@ -22,7 +22,7 @@ namespace KlippelConverters
         [TestMethod]
         public void TestLogConverter()
         {
-            const string fileName = @"Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200.txt";
+            const string fileName = @"Examples\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200.txt";
 
             InitializeAPI(true);
             KlippelLogConverter converter = new KlippelLogConverter();

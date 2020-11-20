@@ -24,6 +24,17 @@ This converter uses the following parameters:
 | sequenceVersion   | 1.0.0         | If log is missing sequence version, use this one.              |
 | operationTypeCode | 10            | If log is missing operation code (process code), use this one. |
 
+## Testing
+
+The project uses the [MSTest framework](https://docs.microsoft.com/en-us/visualstudio/test/quick-start-test-driven-development-with-test-explorer) for testing the converter.
+
+It is setup with two tests; one for setting up the API by registering the client to your WATS, and one for running the converter.
+
+The values are hardcoded in the test, so you will need to change the values to reflect your setup.
+* In SetupClient, fill in your information in the the call to RegisterClient.
+* In TestConverter, fill in the path to the file you want to test the converter with. There are example files in the Examples folder.
+* Run SetupClient once, then you can run TestConverter as many times as you want.
+
 ## Contributing
 
 We're open to suggestions! Feel free open an issue or create a pull request.

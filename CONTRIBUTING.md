@@ -56,7 +56,7 @@ The project uses the [MSTest framework](https://docs.microsoft.com/en-us/visuals
 
 It is setup with two tests; one for setting up the API by registering the client to your WATS, and one for running the converter.
 
-At the moment, the values are hardcoded in the test, so you would need to change the values to reflect your setup.
+The values are hardcoded in the test, so you will need to change the values to reflect your setup.
 * In SetupClient, fill in your information in the the call to RegisterClient.
 * In TestConverter, fill in the path to the file you want to test the converter with.
 * Run SetupClient once, then you can run TestConverter as many times as you want.

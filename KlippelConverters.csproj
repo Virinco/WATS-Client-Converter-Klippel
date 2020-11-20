@@ -63,48 +63,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Impedance-imp.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Impedance-values.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-rbz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-resp.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-thd.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-values.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Impedance-imp.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Impedance-values.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-rbz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-resp.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-thd.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-values.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Example\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200.txt" />
+    <Content Include="Example\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Impedance-imp.txt" />
+    <Content Include="Example\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Impedance-values.txt" />
+    <Content Include="Example\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-rbz.txt" />
+    <Content Include="Example\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-resp.txt" />
+    <Content Include="Example\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-thd.txt" />
+    <Content Include="Example\Log\DUT xyz115 2020-05-14 10-01-37-5 UTC+0200\Sound Pressure-values.txt" />
+    <Content Include="Example\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200.txt" />
+    <Content Include="Example\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Impedance-imp.txt" />
+    <Content Include="Example\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Impedance-values.txt" />
+    <Content Include="Example\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-rbz.txt" />
+    <Content Include="Example\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-resp.txt" />
+    <Content Include="Example\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-thd.txt" />
+    <Content Include="Example\Log\DUT xyz116 2020-05-14 10-02-51-3 UTC+0200\Sound Pressure-values.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
