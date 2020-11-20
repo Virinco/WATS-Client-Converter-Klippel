@@ -17,7 +17,7 @@ You can download the latest released version of the converter [here](https://git
 This converter uses the following parameters:
 
 | Parameter         | Default value | Description                                                    |
-|-------------------|:-------------:|----------------------------------------------------------------|
+|-------------------|---------------|----------------------------------------------------------------|
 | partNumber        | ABC123        | If log is missing a part number, use this one.                 |
 | partRevision      | 1.0           | If log is missing a revision, use this one.                    |
 | sequenceName      | MainSequence  | If log is missing sequence name, use this one.                 |
