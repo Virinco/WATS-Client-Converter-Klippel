@@ -23,7 +23,7 @@ namespace KlippelConverters
             };
         }
 
-        public KlippelLogConverter(Dictionary<string,string> args)
+        public KlippelLogConverter(Dictionary<string, string> args)
         {
             parameters = args;
         }
@@ -35,7 +35,7 @@ namespace KlippelConverters
         }
 
         public Report ImportReport(TDM api, Stream file)
-        {            
+        {
             Dictionary<string, string> headerData = new Dictionary<string, string>();
             using (TextReader reader = new StreamReader(file))
             {
@@ -50,7 +50,7 @@ namespace KlippelConverters
                     line = reader.ReadLine();
                 }
             }
-            UUTReport uut = CreateReportFromHeader(headerData, api) ;
+            UUTReport uut = CreateReportFromHeader(headerData, api);
             //2020-5-20-135-5-14-10-1-37-563-120-1.589E+09
             Regex regex = new Regex(@"(?<Year>\d+)-(?<Month>\d+)-(?<WeekNo>-*\d+)-(?<JDay>-*\d+)-(?<WDay>\d+)-(?<Day>\d+)-(?<Hour>\d+)-(?<Minute>\d+)-(?<Second>\d+)-(?<MSec>\d+)-(?<UTCOffset>\d+)");
             Match match = regex.Match(headerData["Cfg_DutStartTime"]);
@@ -63,7 +63,7 @@ namespace KlippelConverters
                 int.Parse(match.Groups["Second"].Value),
                 int.Parse(match.Groups["MSec"].Value)
                 );
-            uut.StartDateTimeUTC = uut.StartDateTime.AddSeconds(-int.Parse(match.Groups["UTCOffset"].Value));            
+            uut.StartDateTimeUTC = uut.StartDateTime.AddSeconds(-int.Parse(match.Groups["UTCOffset"].Value));
             uut.AddMiscUUTInfo("FileName", api.ConversionSource.SourceFile.Name);
             string testDataFolderName = $"{api.ConversionSource.SourceFile.DirectoryName}\\{Path.GetFileNameWithoutExtension(api.ConversionSource.SourceFile.Name)}";
             string[] dataFileNames = Directory.GetFiles(testDataFolderName, "*.txt");
@@ -82,7 +82,7 @@ namespace KlippelConverters
             string[] seqName = Path.GetFileNameWithoutExtension(fileName).Split(new char[] { '-' });
             if (currentSequence == null || currentSequence.Name != seqName[0])
                 currentSequence = uut.GetRootSequenceCall().AddSequenceCall(seqName[0]);
-            using (TextReader reader=new StreamReader(fileName))
+            using (TextReader reader = new StreamReader(fileName))
             {
                 string line = reader.ReadLine();
                 string[] headers = line.Split(new char[] { '\t' });
@@ -93,17 +93,19 @@ namespace KlippelConverters
                 List<double> max = new List<double>();
                 while (line != null)
                 {
-                    if (headers[0]=="name") //Single measure
+                    if (headers[0] == "name") //Single measure
                     {
                         NumericLimitStep numericLimitStep = currentSequence.AddNumericLimitStep(line.Split(new char[] { '\t' }).First());
                         double[] values = ReadDoubles(line);
-                        if (values.Length == 1)
-                            numericLimitStep.AddTest(values[0], "");
-                        else if (values.Length == 3)
-                            numericLimitStep.AddTest(values[0], CompOperatorType.GELE, values[2], values[1], "");
-                        else { } //throw new NotImplementedException("Assumed no limits or min / max");
+                        //Format: name	value	max	min
+                        if (double.IsNaN(values[2])) //No limits
+                            numericLimitStep.AddTest(values[1], "");
+                        else if (!double.IsNaN(values[3]) && !double.IsNaN(values[2]))
+                            numericLimitStep.AddTest(values[1], CompOperatorType.GELE, values[3], values[2], "");
+                        else
+                            throw new NotImplementedException("Assumed no limits or max / min");
                     }
-                    else if (headers[0]=="frq")
+                    else if (headers[0] == "frq")
                     {
                         double[] values = ReadDoubles(line);
                         if (values.Length == 1) { } //No Y value, skip
@@ -116,7 +118,7 @@ namespace KlippelConverters
                                 max.Add(values[2]);
                                 min.Add(values[3]);
                             }
-                            else if (values.Length==3)
+                            else if (values.Length == 3)
                                 max.Add(values[2]);
                             else throw new NotImplementedException("Assumed x,y,min,max or x,y,max");
                         }
@@ -128,36 +130,42 @@ namespace KlippelConverters
                 {
                     NumericLimitStep numericLimitStep = currentSequence.AddNumericLimitStep(headers[1]);
                     numericLimitStep.AddMultipleTest(y.Average(), "Hz", "avg");
-                    if (min.Count>0)
+                    if (min.Count > 0)
                         numericLimitStep.AddMultipleTest(y.Min(), "Hz", "min");
                     if (max.Count > 0)
                         numericLimitStep.AddMultipleTest(y.Max(), "Hz", "max");
+                    int errorCount = 0;
+                    for (int i = 0; i < y.Count; i++)
+                    {
+                        if (i < max.Count && double.IsNaN(max[i])) //Skip if limit is Nan or not exist
+                            continue;
+                        if (i < min.Count && double.IsNaN(min[i]))
+                            continue;
+                        if (y[i] > max[i]) errorCount++;
+                        if (min.Count > 0 && y[i] < min[i]) errorCount++;
+                    }
+                    numericLimitStep.AddMultipleTest(errorCount, CompOperatorType.LT, 1, "#", "OutOfBounds");
                     Chart chart = numericLimitStep.AddChart(ChartType.LineLogX, headers[1], "Frequency", "Hz", "res", "");
                     chart.AddSeries("values", x.ToArray(), y.ToArray());
                     if (min.Count > 0)
                         chart.AddSeries("min", x.ToArray(), min.ToArray());
                     if (max.Count > 0)
                         chart.AddSeries("max", x.ToArray(), max.ToArray());
-                    int errorCount = 0;
-                    for (int i = 0; i < y.Count; i++)
-                    {
-                        if (y[i] > max[i]) errorCount++;
-                        if (min.Count > 0 && y[i] < min[i]) errorCount++;
-                    }
-                    currentSequence.AddNumericLimitStep("OutOfBounds").AddTest(errorCount, CompOperatorType.EQ, 0, "#");
                 }
             }
         }
 
         private double[] ReadDoubles(string line)
         {
-            string[] elements=line.Split(new char[] { '\t' });
+            string[] elements = line.Split(new char[] { '\t' });
             List<double> dl = new List<double>();
             foreach (string element in elements)
             {
                 double d = double.NaN;
                 if (double.TryParse(element, NumberStyles.Any, CultureInfo.InvariantCulture, out d))
                     dl.Add(d);
+                else
+                    dl.Add(double.NaN);
             }
             return dl.ToArray();
         }
