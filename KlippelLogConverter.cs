@@ -63,7 +63,7 @@ namespace KlippelConverters
                 int.Parse(match.Groups["Second"].Value),
                 int.Parse(match.Groups["MSec"].Value)
                 );
-            uut.StartDateTimeUTC = uut.StartDateTime.AddSeconds(-int.Parse(match.Groups["UTCOffset"].Value));
+            uut.StartDateTimeUTC = uut.StartDateTime.AddMinutes(-int.Parse(match.Groups["UTCOffset"].Value));
             uut.AddMiscUUTInfo("FileName", api.ConversionSource.SourceFile.Name);
             string testDataFolderName = $"{api.ConversionSource.SourceFile.DirectoryName}\\{Path.GetFileNameWithoutExtension(api.ConversionSource.SourceFile.Name)}";
             string[] dataFileNames = Directory.GetFiles(testDataFolderName, "*.txt");
